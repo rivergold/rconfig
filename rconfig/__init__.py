@@ -16,10 +16,13 @@ class Config(object):
             log_info = '{} not exist'.format(file_path.as_posix())
             raise IOError(log_info)
 
-        with file_path.open('r', encoding='utf-8') as f:
-            cfg_dict = yaml.load(f, Loader=yaml.FullLoader)
-
-        return Config(cfg=cfg_dict, filename=file_path.name)
+        # Yaml
+        if file_path.suffix == '.yaml':
+            with file_path.open('r', encoding='utf-8') as f:
+                cfg_dict = yaml.load(f, Loader=yaml.FullLoader)
+            return Config(cfg=cfg_dict, filename=file_path.name)
+        else:
+            raise IOError('Not support file suffix yet.')
 
     def __getitem__(self, name):
         return self._cfg.get(name)
