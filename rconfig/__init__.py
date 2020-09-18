@@ -1,6 +1,7 @@
 from pathlib import Path
 import yaml
 from addict import Dict
+from .utils import more_yaml
 
 
 class Config(object):
