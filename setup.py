@@ -7,7 +7,7 @@ with readme_path.open('r', encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='rconfig',
-      version='0.0.post2',
+      version='1.1',
       packages=find_packages(),
       description='Python config',
       install_requires=['addict', 'pyyaml'],
