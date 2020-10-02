@@ -1,7 +1,9 @@
 from pathlib import Path
 import yaml
 from addict import Dict
+from .utils import more_yaml
 
+__version__ = '1.1'
 
 class Config(object):
     def __init__(self, cfg=None, filename=None):
