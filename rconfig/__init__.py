@@ -1,9 +1,10 @@
 from pathlib import Path
-import yaml
+import yaml, json
 from addict import Dict
 from .utils import more_yaml
 
 __version__ = '1.1'
+
 
 class Config(object):
     def __init__(self, cfg=None, filename=None):
@@ -22,6 +23,11 @@ class Config(object):
         if file_path.suffix == '.yaml':
             with file_path.open('r', encoding='utf-8') as f:
                 cfg_dict = yaml.load(f, Loader=yaml.FullLoader)
+            return Config(cfg=cfg_dict, filename=file_path.name)
+        # Json
+        elif file_path.suffix == '.json':
+            with file_path.open('r', encoding='utf-8') as f:
+                cfg_dict = json.load(f)
             return Config(cfg=cfg_dict, filename=file_path.name)
         else:
             raise IOError('Not support file suffix yet.')
